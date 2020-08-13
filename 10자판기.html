@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            width:150px;
+            height:180px;
+        }
+        *{
+            text-align:center;
+        }
+        .change{
+            width:200px;
+        }
+        img.drink{
+            height:300px;
+        }
+        
+    </style>
+    <script>
+        var a=0;
+        var value=0;
+        var cider=-1100;
+        var coke=-1300;
+        var fanta=-800;
+        var coffee=-500;
+        var thousand=1000;
+        var fiveHundred=500;
+        var oneHundred=100;
+        var changeFive=0;
+        var changeOne=0;
+        var changeThousand=0;
+        var img="";
+        function add(a){
+            reset();
+            
+            if(value+a>=0){
+                value=value+a;
+                document.getElementById("result").value+=value;
+            }else {
+                change();
+            }
+            
+        }
+        function reset(){
+            document.getElementById("result").value="";
+            document.getElementById("changeThousand").value="";
+            document.getElementById("changeFive").value="";
+            document.getElementById("changeOne").value="";
+        }
+        function change(){
+            reset();
+            changeThousand=value/1000;
+            changeFive=value%1000/500;
+            changeOne=value%1000%500/100;
+            document.getElementById("changeThousand").value+=Math.floor(changeThousand);
+            document.getElementById("changeFive").value+=Math.floor(changeFive);
+            document.getElementById("changeOne").value+=Math.floor(changeOne);
+        }
+        //온클릭 이벤트 실행시 테이블에 이미지 삽입되는 것만 하면 끝
+    </script>
+</head>
+<body>
+    <table border=1px;>
+        <caption><h1>자판기</h1></caption>
+        <tr>
+            <td ><img class="drink" src="사이다.jpg"><br>
+                <input type="button" onclick="add(cider); inputImg('사이다.jpg')" value="₩1100"></td>
+            <td ><img class="drink" src="콜라.jpg"><br>
+                <input type="button" onclick="add(coke);" value="₩1300"></td>
+            <td><img class="drink" src="환타.jpg"><br>
+                <input type="button" onclick="add(fanta);" value="₩800"></td>
+            <td class="change"><input type="button" onclick="add(thousand);" value="₩1000">
+                <br>
+                <input type="button" onclick="add(fiveHundred);" value="₩500">
+                <br>
+                <input type="button" onclick="add(oneHundred);" value="₩100">
+                <br>
+                <input type="text" id="result" style="width:50px"></td>
+        </tr>
+        
+        <tr>
+            <td><img src="블랙.gif"><br><input type="button" onclick="add(coffee);" value="₩500"></td>
+            <td><img src="블랙.gif"><br><input type="button" onclick="add(coffee);" value="₩500"></td>
+            <td><img src="블랙.gif"><br><input type="button" onclick="add(coffee);" value="₩500"></td>
+            <td class="change"><input type="button" onclick="change();" value="잔돈반환"></td>
+        </tr>
+        <tr>
+            <td rowspan="2" colspan="3" width="300px" height="180px"></td>
+            <td rowspan="2" class="change">
+                <br>1000원<input type="text" id="changeThousand" style="width:30px; height:14px;">개
+                <br>500원<input type="text" id="changeFive" style="width:30px; height:14px;">개
+                <br>100원<input type="text" id="changeOne" style="width:30px; height:14px;">개
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
